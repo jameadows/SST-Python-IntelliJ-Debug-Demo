@@ -8,10 +8,10 @@ debugging.
 
 As is often the case the solution came down to a few simple things that took me hours to figure out through a combination
 of web searches, browsing the SST Discord and stepping through the SST code in the debugger.  As is also often the case
-this solution has room for improvement.  There may be better approaches that what I landed on, and also it seems that 
+this solution has room for improvement.  There may be better approaches than what I landed on, and also it seems that 
 SST is working to improve debugging support for Python.
 
-I'm putting the example out there in case it saves someone else a few hours, and also for, when I inevitably forget the
+I'm putting this example out there in case it saves someone else a few hours, and also, for when I inevitably forget the
 how to make it work, to remind myself :)
 
 ## Usage
@@ -32,13 +32,13 @@ to run Python functions in a venv but as of this version (v2.23.15) that is not 
 Debugging of the Python function is done as a remote application.
 
 ### Setup
-* In package.json under `scripts` change `sst dev` to `sst dev --increase-timeout`
+* In package.json under `scripts` change `sst dev` to `sst dev --increase-timeout` (already done in this example)
 * In IntelliJ set up a debug configuration for `Python Debug Server`.  Set the host and port values, in this example the remote host is `localhost`
 and the port is 8645.
-* Follow the instructions in the configuration dialog about setting installing pydevd-pycharm.  In my case it says to do
+* Follow the instructions in the configuration dialog about installing pydevd-pycharm.  In my case it says to do
 `pip install pydevd-pycharm~=231.9011.34`.  Use whatever version it shows for your installation.
 * As also described in the configuration dialog, paste the following two lines at the top of your lambda function source file.
-This will trigger the debugger once your code is hit.
+This will trigger the debugger once your code is hit.  Change the host and port as needed for your environment.
 ```
 import pydevd_pycharm
 pydevd_pycharm.settrace('localhost', port=8645, stdoutToServer=True, stderrToServer=True)
@@ -54,7 +54,7 @@ trying many permutations with the file mapping I ended up uninstalling and reins
 
 ## Conclusion
 I know the above is terse, but it really only came down to a few key things, and hopefully the code will give you a working
-examples to use as a starting point.  I think this is an aspect of SST that will be evolving so this project may become
+example to use as a starting point.  I think this is an aspect of SST that will be evolving so this project may become
 unnecessary or fall out of date. Please feel free to file a PR for any updates, improvements or corrections.
 
 ## Gratitude
